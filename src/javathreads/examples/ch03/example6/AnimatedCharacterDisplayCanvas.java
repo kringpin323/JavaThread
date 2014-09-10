@@ -32,6 +32,7 @@ public class AnimatedCharacterDisplayCanvas extends CharacterDisplayCanvas imple
                      curX++, fontHeight);
     }
 
+    // 会产生死锁
     public synchronized void run() {
         while (!done) {
             repaint();

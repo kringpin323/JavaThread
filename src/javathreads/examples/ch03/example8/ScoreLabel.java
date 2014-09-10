@@ -59,6 +59,8 @@ public class ScoreLabel extends JLabel implements CharacterListener {
         }
     }
 
+    // 据说这里有一个难以检测的死锁
+    // 解决方法是 让两个  lock 的调用顺序相同
     public void resetScore() {
         try {
             charLock.lock();
@@ -81,6 +83,7 @@ public class ScoreLabel extends JLabel implements CharacterListener {
         });
     }
 
+    // 死锁 矛盾发生于 newCharacter 和 resetScore 之间
     public void newCharacter(CharacterEvent ce) {
         try {
             scoreLock.lock();

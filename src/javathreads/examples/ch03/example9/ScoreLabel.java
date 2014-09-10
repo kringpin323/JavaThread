@@ -59,6 +59,7 @@ public class ScoreLabel extends JLabel implements CharacterListener {
         }
     }
 
+    // 这样就不会发生死锁
     public void resetScore() {
         try {
             scoreLock.lock();

@@ -79,6 +79,9 @@ public class ScoreLabel extends JLabel implements CharacterListener {
     public void newCharacter(CharacterEvent ce) {
         if (ce.source == generator) {
             try {
+            	// 看到这里可以理解为什么 core java 里面提到
+            	// lock的特性过于强大以至于 跳出了 面向对象的范畴
+            	// 成为了 可以 以 程序设计的构想 来 指定加锁的 范围
                 scoreLock.lock();
                 // Previous character not typed correctly - 1 point penalty
                 if (char2type != -1) {
@@ -94,6 +97,7 @@ public class ScoreLabel extends JLabel implements CharacterListener {
         // If character does not match - 1 point penalty
         else {
             try {
+            	// 请注意 ： lock scope 越小越好
                 scoreLock.lock();
                 if (char2type != ce.character) {
                     score--;

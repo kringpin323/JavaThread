@@ -65,6 +65,9 @@ public class SwingTypeTester extends JFrame implements CharacterSource {
 	    public void actionPerformed(ActionEvent evt) {
                 startButton.setEnabled(true);
 		stopButton.setEnabled(false);
+		// 在 example5 中 由于 producer 继承了 Runnable 
+		// 因此 不能使用 interrupt 
+		// producer.setDone();
 		producer.interrupt();
 		feedbackCanvas.setEnabled(false);
 	    }

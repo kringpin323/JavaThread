@@ -35,6 +35,15 @@ public class RandomCharacterGenerator extends Thread implements CharacterSource 
                                 (int) chars[random.nextInt(chars.length)]);
     }
 
+    /**
+     * 从Java线程 P37
+     * 这里可能的情况是不及时
+     * 最坏情况：在run方法执行 isInterrupted()后
+     * 立刻在其他地方 interrupt了，因此还是会发生sleep动作
+     * 在后面还会继续解决这个 race condition
+     * @author kingpin.lin
+     * @since 2014-09-10
+     * */
     public void run() {
         while (!isInterrupted()) {
             nextCharacter();
