@@ -55,6 +55,9 @@ public class AnimatedCharacterDisplayCanvas extends CharacterDisplayCanvas imple
             timer = new Thread(this);
             timer.start();
         }
+        
+        // 若 notify 执行时 没有 wait ，那么通知遗失
+        // wait 需要其他来唤醒
         if (!done)
             notify();
     }

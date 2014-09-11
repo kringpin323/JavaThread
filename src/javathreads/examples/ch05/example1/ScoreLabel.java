@@ -6,14 +6,20 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.*;
 import javathreads.examples.ch05.*;
 
+/**
+ * 完全使用 atomic 来代替 synchronized 和 lock
+ * 
+ * */
 public class ScoreLabel extends JLabel implements CharacterListener {
     private AtomicInteger score = new AtomicInteger(0);
     private AtomicInteger char2type = new AtomicInteger(-1);
     private AtomicReference<CharacterSource> generator = null;
     private AtomicReference<CharacterSource> typist = null;
 
+    // 重新初始化
     public ScoreLabel (CharacterSource generator, CharacterSource typist) {
-        this.generator = new AtomicReference(generator);
+        // 使用  AtomicReference 进行包装
+    	this.generator = new AtomicReference(generator);
         this.typist = new AtomicReference(typist);
 
         if (generator != null)

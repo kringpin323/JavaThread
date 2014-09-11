@@ -3,6 +3,16 @@ package javathreads.examples.ch05;
 import java.lang.*;
 import java.util.concurrent.atomic.*;
 
+/**
+ * thread 间 不会共享保存在寄存器的数据
+ * 使用volatile关键字能够确保变量不会保持在寄存器中
+ * 这能够保证变量是真正地共享于thread之间
+ * 
+ * 对于 synchronized 
+ * 当 JVM 进入 synchronized method 或块的时候
+ * 它必须重新加载本来已经cached到自有寄存器上的数据
+ * 在 vm 离开 同步块 之前，必须把自有寄存器存入主存储器中
+ * */
 public class AtomicDouble extends Number {
     private AtomicReference<Double> value;
 

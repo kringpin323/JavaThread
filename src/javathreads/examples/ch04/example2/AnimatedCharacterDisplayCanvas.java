@@ -24,6 +24,7 @@ public class AnimatedCharacterDisplayCanvas extends CharacterDisplayCanvas imple
         repaint();
     }
 
+    // 能同一时间访问 paintComponent 和 run 这两个 method
     protected synchronized void paintComponent(Graphics gc) {
         Dimension d = getSize();
         gc.clearRect(0, 0, d.width, d.height);
