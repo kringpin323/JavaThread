@@ -7,7 +7,11 @@ import java.util.concurrent.atomic.*;
 import javathreads.examples.ch05.*;
 
 public class ScoreLabel extends JLabel implements CharacterListener {
-    private AtomicInteger score = new AtomicInteger(0);
+    // 书里介绍：atomic class 实现使用了乐观同步这个方法
+	// 程序代码抓住保护变量的值并作出此一瞬间没有其他修改的假设
+	// 然后程序代码计算新值，并尝试更新该变量
+	// 若其他有修改，就失败并且使用变量的最新修改过的值
+	private AtomicInteger score = new AtomicInteger(0);
     private AtomicInteger char2type = new AtomicInteger(-1);
     private AtomicReference<CharacterSource> generator = null;
     private AtomicReference<CharacterSource> typist = null;
