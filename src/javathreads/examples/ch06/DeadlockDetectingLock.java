@@ -10,11 +10,14 @@ import java.util.concurrent.locks.*;
 //   everyday usage. The purpose of this class is to test for deadlocks. The lock()
 //   method now throws a DeadlockDetectedException, if a deadlock occurs.
 //
+// 需要找一个时间将这段程序搞掂，还要写测试历程
 public class DeadlockDetectingLock extends ReentrantLock {
     // List of deadlock detecting locks.
     // This array is not thread safe, and must be externally synchronized
     //    by the class lock. Hence, it should only be called by static
     //    methods.
+	
+	// 所有用来加锁的lock都会在这里注册，
     private static List deadlockLocksRegistry = new ArrayList();
 
     private static synchronized void registerLock(DeadlockDetectingLock ddl) {
@@ -31,6 +34,12 @@ public class DeadlockDetectingLock extends ReentrantLock {
     // This array is not thread safe, and must be externally synchronized
     //    by the class lock. Hence, it should only be called by static
     //    methods.
+    
+    // 	对每个可检测死锁的 lock 都会有一个 hardwaitingThreads 的 list, 保存 对 这个
+    // lock 执行 hard wait 的所有 threads 对象
+    // hard wait 定义为 thread 尝试以无止境的等待来取得lock
+    // 如果 在 lock 的 取得过程中加上一个期限，例如一万年 则是 soft wait 
+    
     private List hardwaitingThreads = new ArrayList();
 
     private static synchronized void markAsHardwait(List l, Thread t) {
@@ -92,7 +101,7 @@ public class DeadlockDetectingLock extends ReentrantLock {
     }
 
     //
-    // Core Constructors
+    // Core Constructors3
     //
     public DeadlockDetectingLock() {
         this(false, false);
