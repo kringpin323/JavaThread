@@ -5,6 +5,8 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.locks.*;
 
+// 坚持每天都至少要更新注释
+// 第六章是 最难的部分（到目前为止），大致意思是：通过 遍历树来查看是否循环获取锁，看看是否产生死锁。
 // This is a very slow implementation of a ReentrantLock class and is not for
 //   everyday usage. The purpose of this class is to test for deadlocks. The lock()
 //   method now throws a DeadlockDetectedException, if a deadlock occurs. This

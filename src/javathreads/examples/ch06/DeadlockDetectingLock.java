@@ -10,7 +10,7 @@ import java.util.concurrent.locks.*;
 //   everyday usage. The purpose of this class is to test for deadlocks. The lock()
 //   method now throws a DeadlockDetectedException, if a deadlock occurs.
 //
-// 需要找一个时间将这段程序搞掂，还要写测试历程
+// 需要找一个时间将这段程序搞掂，还要写测试历程，本周博客就写这个了
 public class DeadlockDetectingLock extends ReentrantLock {
     // List of deadlock detecting locks.
     // This array is not thread safe, and must be externally synchronized
