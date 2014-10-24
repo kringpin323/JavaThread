@@ -3,8 +3,10 @@ package javathreads.examples.ch08.example2;
 import java.util.*;
 
 public class CharacterEventHandler {
+	// 无线程安全性 的 collection
     private ArrayList listeners = new ArrayList();
-
+    
+    // 与 vector 相比，明确管理同步
     public synchronized void addCharacterListener(CharacterListener cl) {
         listeners.add(cl);
     }

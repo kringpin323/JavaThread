@@ -5,6 +5,7 @@ import java.util.*;
 public class CharacterEventHandler {
     private ArrayList listeners = new ArrayList();
 
+    // 将 synchronized关键字写到里面，简化，使用对象锁
     public void addCharacterListener(CharacterListener cl) {
         synchronized(listeners) {
             listeners.add(cl);
