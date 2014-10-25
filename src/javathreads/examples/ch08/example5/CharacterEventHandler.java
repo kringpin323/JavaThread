@@ -17,6 +17,7 @@ public class CharacterEventHandler {
 	public void fireNewCharacter(CharacterSource source, int c) {
 		CharacterEvent ce = new CharacterEvent(source, c);
 		Enumeration e;
+		// 通过 Enumeration 来遍历集合
 		synchronized(listeners) {
 			e = listeners.elements();
 			while (e.hasMoreElements()) {

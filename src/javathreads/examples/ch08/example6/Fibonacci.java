@@ -5,6 +5,7 @@ import java.util.*;
 import java.util.concurrent.*;
 
 public class Fibonacci {
+	// 同步 collection
     private ConcurrentMap<Integer, Integer> values =
               new ConcurrentHashMap<Integer, Integer>();
 
@@ -18,12 +19,14 @@ public class Fibonacci {
 
     public int calculateWithCache(int x) {
         Integer key = new Integer(x);
+        // 就是说 没有这个key还是会返回一个null
         Integer result = values.get(key);
 
         if (result == null) {
             result = new Integer(calculate(x));
-            values.putIfAbsent(key, result);
+            values.putIfAbsent(key, result); // 这时候才算真的有这个key
         }
+        // 每次计算得到结果，放入 hashMap缓存中，返回值
         return result.intValue();                
     }
 

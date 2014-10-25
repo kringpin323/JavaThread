@@ -9,7 +9,8 @@ public class FibonacciConsumer implements Runnable {
     private BlockingQueue<Integer> queue;
 
     public FibonacciConsumer(BlockingQueue<Integer> q) {
-        queue = q;
+        // 果然是共享的 BlockingQueue 
+    	queue = q;
         thr = new Thread(this);
         thr.start();
     }
@@ -18,8 +19,11 @@ public class FibonacciConsumer implements Runnable {
         int request, result;
         try {
             while (true) {
+            	// 消费一个,如果这里没有，消费者将会被block住，将整个并发控制交给了 blockingQueue
                 request = queue.take().intValue();
+                // 消费的结果
                 result = fib.calculateWithCache(request);
+                // 输出消费的结果
                 System.out.println("Calculated result of " + result + " from " + request);
             }
         } catch (InterruptedException ex) {

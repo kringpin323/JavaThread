@@ -18,7 +18,7 @@ public class CharacterEventHandler {
     }
 
     // 我们对listerners 循环以调用到每一个， 但是其他thread可能会在我们循环的时候调用 remove 
-    // 可能会对 vector中已经删除的的数据进行计算，这就是race condition？
+    // 可能会对 vector中已经删除的的数据进行计算，这就是race condition？race condition 是对并发访问的共享资源修改，造成数据不一致
     // 即使使用 有 thread 安全性的collection 并不能保证程序的正确性，还是需要在范例中有明确的同步
     public void fireNewCharacter(CharacterSource source, int c) {
         CharacterEvent ce = new CharacterEvent(source, c);
