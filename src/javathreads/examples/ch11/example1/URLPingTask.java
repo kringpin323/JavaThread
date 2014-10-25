@@ -3,39 +3,42 @@ package javathreads.examples.ch11.example1;
 import java.util.*;
 import java.net.*;
 
+// 功能
+// 监控一个或多个网站的可达性，它周期性地尝试从网站获得一个URL
 public class URLPingTask extends TimerTask {
 
-    public interface URLUpdate {
-        public void isAlive(boolean b);
-    }
+	// 内部接口
+	public interface URLUpdate {
+		public void isAlive(boolean b);
+	}
 
-    URL url;
-    URLUpdate updater;
+	URL url;
+	URLUpdate updater;
 
-    public URLPingTask(URL url) {
-        this(url, null);
-    }
+	public URLPingTask(URL url) {
+		this(url, null);
+	}
 
-    public URLPingTask(URL url, URLUpdate uu) {
-        this.url = url;
-        updater = uu;
-    }
+	public URLPingTask(URL url, URLUpdate uu) {
+		this.url = url;
+		updater = uu;
+	}
 
-    public void run() {
-        if (System.currentTimeMillis() - scheduledExecutionTime() > 5000) {
-            // Let the next task do it
-            return;
-        }
-        try {
-            HttpURLConnection huc = (HttpURLConnection) url.openConnection();
-            huc.setConnectTimeout(1000);
-            huc.setReadTimeout(1000);
-            int code = huc.getResponseCode();
-            if (updater != null)
-                updater.isAlive(true);
-        } catch (Exception e) {
-            if (updater != null)
-                updater.isAlive(false);
-        }
-    }
+	public void run() {
+		if (System.currentTimeMillis() - scheduledExecutionTime() > 5000) {
+			// Let the next task do it
+			return;
+		}
+		try {
+			HttpURLConnection huc = (HttpURLConnection) url.openConnection();
+			huc.setConnectTimeout(1000);
+			huc.setReadTimeout(1000);
+			int code = huc.getResponseCode();
+			if (updater != null)
+				updater.isAlive(true);
+		} catch (Exception e) {
+			if (updater != null)
+				updater.isAlive(false);
+		}
+	}
 }

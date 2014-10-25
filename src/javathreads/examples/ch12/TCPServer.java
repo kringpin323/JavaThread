@@ -3,6 +3,7 @@ package javathreads.examples.ch12;
 import java.net.*;
 import java.io.*;
 
+// 传统服务器 TCPServer class 实现
 public class TCPServer implements Cloneable, Runnable {
     Thread runner = null;
     ServerSocket server = null;
