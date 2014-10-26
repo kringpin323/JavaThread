@@ -6,8 +6,10 @@ import java.nio.*;
 import java.nio.channels.*;
 import javathreads.examples.ch12.*;
 
+// 多线程 multiThread 化 NIO 服务器
 public class CalcServer extends TCPNIOServer {
-
+	
+	// 线程池 分配多个  一定数目 的 thread ，每个 thread 处理 多个 客户端NIO请求
     static ThreadPoolExecutor pool;
 
     class FibClass implements Runnable {

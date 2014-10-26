@@ -8,6 +8,7 @@ import java.net.*;
 import java.util.*;
 import javathreads.examples.ch12.*;
 
+// 感觉如果没有看过 NIO 的详细内容是不会懂这部分
 public class TypeServer extends TCPNIOServer {
     static String testString = "Thisisateststring";
     static class ClientInfo {
@@ -27,6 +28,7 @@ public class TypeServer extends TCPNIOServer {
         if (key.isWritable())
             send(sc, ci);
         if (key.isReadable())
+        	// 从一个客户端读进所有的可用数据
             recv(sc, ci);
     }
 
