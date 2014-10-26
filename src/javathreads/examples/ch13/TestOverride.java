@@ -22,6 +22,7 @@ public class TestOverride implements Runnable {
     public static void main(String[] args) {
         ThreadGroup tg = new OverrideThreadGroup();
 
+        // 通过线程组启动 thread
         Thread t = new Thread(tg, new TestOverride());
         t.start();
     }
