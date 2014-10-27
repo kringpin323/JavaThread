@@ -2,6 +2,7 @@ package javathreads.examples.ch15.example3;
 
 import javathreads.examples.ch15.*;
 
+// 	以最小的成本计算将工作分配给thread，负载均衡
 public class SinTable extends LoopHandler {
     private float lookupValues[];
 

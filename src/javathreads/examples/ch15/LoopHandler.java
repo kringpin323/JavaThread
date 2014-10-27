@@ -1,5 +1,7 @@
 package javathreads.examples.ch15;
 
+// LoopHandler 使用静态或者块调度，
+// 缺点是 ： 如果有一个线程所需要的时间比其他多，，其他线程在最后将会等待最后的那个线程完完成
 public class LoopHandler implements Runnable {
     protected class LoopRange {
         public int start, end;
