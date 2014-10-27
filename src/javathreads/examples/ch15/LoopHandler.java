@@ -24,6 +24,7 @@ public class LoopHandler implements Runnable {
         return ret;
     }
 
+    // 调度过程为空？也许这个有使用意义来看定位为抽象类也恰当
     public void loopDoRange(int start, int end) {
     }
 

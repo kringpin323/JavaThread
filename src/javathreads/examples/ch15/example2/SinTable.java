@@ -15,8 +15,9 @@ public class SinTable implements Runnable {
         startLoop = curLoop = 0;
         endLoop = (360 * 100);
         numThreads = 12;
-    }
+    }	
  
+    // 将计算划分12个范围，分给所有的thread，
     private synchronized SinTableRange loopGetRange() {
         if (curLoop >= endLoop)
             return null;
@@ -27,6 +28,9 @@ public class SinTable implements Runnable {
         return ret;
     }
  
+    // 具体计算， start ，end
+    // 每个 thread 上的stack 都用 i，sinValue
+    // 
     private void loopDoRange(int start, int end) {
         for (int i = start; i < end; i += 1) {
             float sinValue = (float)Math.sin((i % 360)*Math.PI/180.0);
@@ -48,6 +52,7 @@ public class SinTable implements Runnable {
         }
         for (int i = 0; i < numThreads; i++) {
             try {
+            	// 所有并行运行完毕再返回
                 lookupThreads[i].join();
             } catch (InterruptedException iex) {}
         }

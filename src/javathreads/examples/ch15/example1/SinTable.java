@@ -3,6 +3,7 @@ package javathreads.examples.ch15.example1;
 public class SinTable {
     private float lookupValues[] = null;
 
+    // 非常消耗CPU资源的计算，作为 范例
     public synchronized float[] getValues() {
         if (lookupValues == null) {
             lookupValues = new float [360 * 100];
