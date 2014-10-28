@@ -16,7 +16,8 @@ public class SinTable extends GuidedLoopHandler {
         for (int i = start; i < end; i++) {
             sinValue = (float)Math.sin((i % 360)*Math.PI/180.0);
             lookupValues[i] = sinValue * (float)i / 180.0f;
-            // 由于 sumValue是共享变量，我不明白，对其同步限制
+            // 由于 sumValue是共享变量，对其同步限制
+            // 每次迭代做同步化，不好
             synchronized (this) {
                 sumValue += lookupValues[i];
             }    

@@ -17,7 +17,7 @@ public class SelfLoopHandler extends PoolLoopHandler {
         LoopRange ret = new LoopRange();
         ret.start = curLoop;
         // 每次 分组 一定数目
-        curLoop += groupSize;
+        curLoop += groupSize; // 每个范围更少，通过线程池限制 线程数量为 12
         ret.end = (curLoop<endLoop)?curLoop:endLoop;
         return ret;
     }

@@ -2,6 +2,7 @@ package javathreads.examples.ch15;
 
 import java.util.concurrent.*;
 
+// 看名字就能看出来，加入线程池的 循环控制调度
 public class PoolLoopHandler implements Runnable {
 	
 	// 静态内部类中无法引用到其外围类的非静态成员

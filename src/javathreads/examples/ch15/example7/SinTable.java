@@ -21,8 +21,10 @@ public class SinTable extends GuidedLoopHandler {
     }    
 
     public float[] getValues() {
+    	// 会先等 12 thread 处理完成 lookupValues 不再改变
         loopProcess();
         sumValues[0] = lookupValues[0];
+        // main 主线程处理，单线程运行
         for (int i = 1; i < (360*100); i++) {
             sumValues[i] = lookupValues[i] + lookupValues[i-1];
         }

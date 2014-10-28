@@ -5,7 +5,7 @@ import javathreads.examples.ch15.*;
 public class SinTable extends GuidedLoopHandler {
     // 私有，指向堆
 	private float lookupValues[];
-    // 简约变量
+    // 简约变量，估计意思：只需要在 = 号左边出现，不需要在右边出现的变量
     public float sumValue;
 
     // 初始化
@@ -17,6 +17,7 @@ public class SinTable extends GuidedLoopHandler {
 
     public void loopDoRange(int start, int end) {
         float sinValue = 0.0f;
+        // 利用thread stack frame 存储变量
         float sumValue = 0.0f;
         for (int i = start; i < end; i++) {
             sinValue = (float)Math.sin((i % 360)*Math.PI/180.0);

@@ -3,7 +3,10 @@ package javathreads.examples.ch15.example3;
 import javathreads.examples.ch15.*;
 
 // 	以最小的成本计算将工作分配给thread，负载均衡
+// 产生 了一个 小问题，如何逆向抽象？
+// 正向可以比较容易看明白
 public class SinTable extends LoopHandler {
+	// 这个是共享变量而不是循环处理一部分是因为main客户端要使用它
     private float lookupValues[];
 
     public SinTable() {
@@ -20,6 +23,7 @@ public class SinTable extends LoopHandler {
     }    
 
     public float[] getValues() {
+    	// 循环处理
         loopProcess();
         return lookupValues;
     }

@@ -16,7 +16,7 @@ public class GuidedLoopHandler extends PoolLoopHandler {
             return null;
         LoopRange ret = new LoopRange();
         ret.start = curLoop;
-        int sizeLoop = (endLoop-curLoop)/numThreads;
+        int sizeLoop = (endLoop-curLoop)/numThreads; // 注意这个 换成了 curLoop
         curLoop += (sizeLoop>minSize)?sizeLoop:minSize;
         ret.end = (curLoop<endLoop)?curLoop:endLoop;
         return ret;
