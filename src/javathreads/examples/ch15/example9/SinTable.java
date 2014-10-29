@@ -22,6 +22,7 @@ public class SinTable extends GuidedLoopHandler {
 
     public float[] getValues() {
         loopProcess();
+        // 控制并发输出流
         lp.send2stream(System.out);
         return lookupValues;
     }

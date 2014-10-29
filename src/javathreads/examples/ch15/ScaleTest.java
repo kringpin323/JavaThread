@@ -4,6 +4,10 @@ import java.util.*;
 import java.text.*;
 import java.io.*;
 
+// 循环处理测试例程
+// 能得到两个数字：
+// 运行整个程序所需的毫秒数（包括单一thread的初始化）
+// 只运行循环计算所需的毫秒数
 public class ScaleTest {
     private int nIter = 200;
     private int nRows = 2000;

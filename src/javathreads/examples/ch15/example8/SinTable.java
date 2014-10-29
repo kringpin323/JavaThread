@@ -16,6 +16,10 @@ public class SinTable extends PoolLoopHandler {
 
     public void loopDoRange(int start, int end) {
         float sinValue = 0.0f;
+        // thread 外层而不是内层loop通常比较有益
+        // 选择thread外层的理由是：创建，销毁，许多thread之间的同步化需要成本
+        // 较大范围上同步thread会使用更少的同步化
+        // 第二次循环或者称为内循环
         for (int i = start; i < end; i++) {
             sinValue = (float)Math.sin((i % 360)*Math.PI/180.0);
             lookupValues[j][i] = sinValue * (float)i / 180.0f;
@@ -27,6 +31,7 @@ public class SinTable extends PoolLoopHandler {
         for (int i = 0; i < 360; i++) {
             lookupValues[0][i] = 0;
         }
+        // 第一次循环
         for (j = 1; j < 1000; j++) {
             loopProcess();
         }

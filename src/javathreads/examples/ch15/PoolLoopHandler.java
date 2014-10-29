@@ -48,14 +48,17 @@ public class PoolLoopHandler implements Runnable {
 		setRange(start, end);
 	}
 
+	// 分配新的循环范围
 	public synchronized void setRange(int start, int end) {
 		startLoop = start;
 		endLoop = end;
 		reset();
 	}
 
+	// 之前的设计中，循环索引，决不能被设回给循环的起点
+	// 也不能改变循环的范围
+	// 重置循环索引回到循环的开始
 	public synchronized void reset() {
-		// 
 		curLoop = startLoop;
 	}
 

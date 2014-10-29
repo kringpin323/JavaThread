@@ -2,6 +2,7 @@ package javathreads.examples.ch15.example10;
 
 import javathreads.examples.ch15.*;
 
+// ≤‚ ‘¿˝≥Ã
 public class Basic implements ScaleTester {
     private float lookupValues[][];
     int nCols, nRows;
